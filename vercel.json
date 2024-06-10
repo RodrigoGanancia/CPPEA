@@ -1,26 +1,32 @@
 {
-  "builds": [{
-      "src": "cppeaproj/wsgi.py",
-      "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
-  },
-  {
-    "src": "app/package.json",
-    "use": "@vercel/static-build",
-    "config": { "distDir": "app/build" }
-  }],
-  "routes": [
-    {
+    "builds": [
+      {
+        "src": "cppeaproj/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+      },
+      {
+        "src": "app/package.json",
+        "use": "@vercel/static-build",
+        "config": { "distDir": "app/build" }
+      }
+    ],
+    "routes": [
+      {
         "src": "/static/(.*)",
         "dest": "/app/build/static/$1"
-    },
-    {
+      },
+      {
         "src": "/",
-        "dest": "cppeaproj/wsgi.py"
-    },
-    {
+        "dest": "/app/build/index.html"
+      },
+      {
         "src": "/(.*)",
+        "dest": "/app/build/$1"
+      },
+      {
+        "src": "/api/(.*)",
         "dest": "cppeaproj/wsgi.py"
-    }
-  ]
+      }
+    ]
 }
