@@ -3,11 +3,24 @@
       "src": "cppeaproj/wsgi.py",
       "use": "@vercel/python",
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+  },
+  {
+    "src": "app/package.json",
+    "use": "@vercel/static-build",
+    "config": { "distDir": "app/build" }
   }],
   "routes": [
-      {
-          "src": "/(.*)",
-          "dest": "cppeaproj/wsgi.py"
-      }
+    {
+        "src": "/static/(.*)",
+        "dest": "/app/build/static/$1"
+    },
+    {
+        "src": "/",
+        "dest": "cppeaproj/wsgi.py"
+    },
+    {
+        "src": "/(.*)",
+        "dest": "cppeaproj/wsgi.py"
+    }
   ]
 }
