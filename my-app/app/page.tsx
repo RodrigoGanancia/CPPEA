@@ -1,4 +1,5 @@
 import Image from "next/image";
+import PageHeader from "@/components/page-header"
 
 export default function Home() {
   return (
@@ -37,6 +38,9 @@ export default function Home() {
           height={37}
           priority
         />
+      </div>
+      <div>
+        <PageHeader>Click me</PageHeader>
       </div>
 
       <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
